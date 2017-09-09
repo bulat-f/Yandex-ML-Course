@@ -20,11 +20,15 @@ def task_1_4(data, out):
     out.write(' ')
     out.write('%.2f' % data.Age.median())
 
+def task_1_5(data, out):
+    corr = data.corr()['SibSp']['Parch']
+    out.write('%.2f' % corr)
+
 def main():
     data = pandas.read_csv('titanic.csv', index_col = 'PassengerId')
-    for i in range(1, 5):
+    for i in range(1, 6):
         name = 'task_1_' + str(i)
-        out = file(name + '.out', 'w')
+        out = open(name + '.out', 'w')
         method = globals().get(name)
         method(data, out)
         out.close()
